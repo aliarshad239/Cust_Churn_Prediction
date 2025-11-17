@@ -1,0 +1,13 @@
+# Ignore virtual environments
+venv/
+.venv/
+
+# Ignore raw + processed data (can re-download)
+data/raw/
+data/processed/
+
+# Ignore models (they can be regenerated)
+models/
+
+# Ignore system files
+.DS_Store

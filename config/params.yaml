@@ -1,0 +1,27 @@
+# random seed so results are reproducible
+random_state: 42
+
+data:
+  raw_path: data/raw/telco_churn.csv          # original dataset location
+  processed_path: data/processed/train_ready.csv   # cleaned dataset output
+  target: Churn                               # target column
+
+features:
+  drop: ["customerID"]                        # unique ID, not useful
+  numeric: ["tenure", "MonthlyCharges", "TotalCharges"]   # continuous values
+  binary_yes_no: ["Partner", "Dependents", "PhoneService", "PaperlessBilling"]   # Yes/No features
+  categorical: ["gender", "MultipleLines", "InternetService", "OnlineSecurity",
+                "OnlineBackup", "DeviceProtection", "TechSupport",
+                "StreamingTV", "StreamingMovies", "Contract", "PaymentMethod"]   # categorical text
+  engineered:
+    - services_count                          # new: how many services subscribed
+    - tenure_bucket                           # new: tenure grouped into ranges
+    - est_lifetime_value                      # new: monthly charges * tenure
+
+train:
+  test_size: 0.2                              # 20% for test
+  cv_folds: 5                                 # cross-validation folds
+  metric: roc_auc                             # main evaluation metric
+  model_type: xgboost                         # model choice (logistic | xgboost)
+  positive_label: "Yes"                       # churned = "Yes"
+  threshold: 0.35                             # probability cutoff for classification
