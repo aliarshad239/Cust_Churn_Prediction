@@ -22,6 +22,6 @@ train:
   test_size: 0.2                              # 20% for test
   cv_folds: 5                                 # cross-validation folds
   metric: roc_auc                             # main evaluation metric
-  model_type: xgboost                         # model choice (logistic | xgboost)
+  model_type: logistic                        # model choice (logistic | xgboost)
   positive_label: "Yes"                       # churned = "Yes"
   threshold: 0.35                             # probability cutoff for classification

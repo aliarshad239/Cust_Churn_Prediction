@@ -1,0 +1,10 @@
+version: "3.9"
+services:
+  churn-api:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - S3_BUCKET=
+      - MODEL_KEY=
+      - CONFIG_KEY=

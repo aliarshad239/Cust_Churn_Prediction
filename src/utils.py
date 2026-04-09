@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from pathlib import Path
+from typing import Union
 import yaml
 
 @dataclass
@@ -9,7 +10,7 @@ class Config:
     features: dict
     train: dict
 
-def load_config(path: str | Path) -> Config:
+def load_config(path: Union[str, Path]) -> Config:
     """Load params.yaml config."""
     with open(path, "r") as f:
         cfg = yaml.safe_load(f)
